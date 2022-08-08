@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-family: 'Overpass', sans-serif;
+    font-size: 62.5%;
+}
+body{
+    
+    background-color: #082a3a;
+}
+button{
+    border: none;
+    background: none;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.header_container{
+    width: 100%;
+    height: auto;
+    background-color: black;
+}
+.navbar_container{
+    width: 100%;
+    display: flex;
+}
+.navbar_container .navbar_logo{
+    width: 40px;
+}
+.navbar_buttons{
+    
+}
+.navbar_buttons button{
+    
+}
+
+
+/* main*/
+.main_container{
+    height: 1000px;
+}
