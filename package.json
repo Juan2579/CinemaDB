@@ -1,0 +1,19 @@
+{
+  "name": "cinemadb",
+  "version": "1.0.0",
+  "description": "Curso Practico API REST",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Juan2579/CinemaDB.git"
+  },
+  "author": "Juan2579",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Juan2579/CinemaDB/issues"
+  },
+  "homepage": "https://github.com/Juan2579/CinemaDB#readme"
+}
