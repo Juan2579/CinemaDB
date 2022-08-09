@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Inline+One:ital@1&family=Overpass:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Inline+One:ital@1&family=Overpass:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     
@@ -16,20 +16,59 @@
         <nav class="navbar_container">
             <img class="navbar_logo" src="./assets/icons/logo1.svg" alt="">
             <ul class="navbar_buttons">
-                <button><img src="./assets/icons/menu.svg" alt=""></button>
+                <button><img class="navbar_menu" src="./assets/icons/menu.svg" alt=""></button>
                 <button><img src="./assets/icons/close.svg" alt=""></button>
             </ul>
         </nav>
     </header>
 
     <main class="main_container">
+        <div class="main_container--background">
+            <picture class="main_background">
+                <source media="(min-width: 720px)" srcset="">
+                <img class="main_background" src="./assets/images/bgMobile.jpg" alt="">
+            </picture>
+            <section class="main_content">
+                <div class="main_name">
+                    <img class="navbar_logo" src="./assets/icons/logo1.svg" alt="">
+                    <h1>CINEMA DB</h1>
+                </div>
+                <p>Encuentra tus peliculas favoritas, en tendencias y mucho más</p>
+                <a href="">Get Started</a>
+            </section>
+        </div>
 
+        <section class="main-trending_container">
+            <div class="main-trending_header">
+                <h2>Trending</h2>
+                <button>See all</button>
+            </div>
+
+            <article class="main-trending_movieList">
+                <!-- <div class="movie_container">
+                    <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
+                    <p>Upgrade</p>
+                </div> -->
+            </article>
+        </section>
+
+        <section class="main-categories_container">
+            <h2>Genres</h2>
+
+            <article class="main-categories_categoryList">
+                <!-- <div class="category_container">
+                    <img />
+                    <h3>ACCION</h3>
+                </div> -->
+            </article>
+        </section>
     </main>
     
     <footer>
 
     </footer>
-
-    <script type="module" src="./src/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./src/main.js"></script>
+    <script src="./src/navigation.js"></script>
 </body>
 </html>
