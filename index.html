@@ -23,6 +23,9 @@
     </header>
 
     <main class="main_container">
+        
+        <img class="main_back-button" src="./assets/icons/backButton.svg" alt="">
+        
         <div class="main_container--background">
             <picture class="main_background">
                 <source media="(min-width: 720px)" srcset="">
@@ -37,6 +40,46 @@
                 <a href="">Get Started</a>
             </section>
         </div>
+
+        <section class="main_header--search">
+            <form class="main_search-Form">
+                <input type="text" placeholder="Search for a movie">
+                <button><img src="./assets/icons/searchIcon.svg" alt=""></button>
+            </form>
+        </section>
+
+        <section class="main_header--movie">
+            <div>
+                <h1>Deadpool</h1>
+                <div>
+                    <img src="" alt="">
+                    <span>7.6</span>
+                </div>
+            </div>
+        </section>
+ 
+        <section class="main_header--categories">
+            <h2>Genres</h2>
+            <article class="main_header--categoryList">
+                <div class="movie_container">
+                    <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
+                    <p>Upgrade</p>
+                </div>
+                <div class="movie_container">
+                    <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
+                    <p>Upgrade</p>
+                </div>
+                <div class="movie_container">
+                    <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
+                    <p>Upgrade</p>
+                </div>
+                <div class="movie_container">
+                    <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
+                    <p>Upgrade</p>
+                </div>
+
+            </article>
+        </section> 
 
         <section class="main-trending_container">
             <div class="main-trending_header">
@@ -68,6 +111,7 @@
 
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./src/nodes.js"></script>
     <script src="./src/main.js"></script>
     <script src="./src/navigation.js"></script>
 </body>
