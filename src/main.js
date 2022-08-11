@@ -10,10 +10,8 @@ const apiAxios = axios.create({
     }
 })
 
-async function getTrendingMoviesPreview(){
-    const { data } = await apiAxios(`trending/movie/day`)
-    const movies = data.results
-
+//Helper functions
+const createMovies = (movies, container) => {
     movies.forEach(movie => {
         
         const movieContainer = document.createElement('div');
@@ -29,15 +27,14 @@ async function getTrendingMoviesPreview(){
 
         movieContainer.appendChild(movieImg);
         movieContainer.appendChild(movieName);
-        trendingMovieList.appendChild(movieContainer);
+        container.appendChild(movieContainer);
     });
 }
 
-async function getCategoriesList(){
-    const { data } = await apiAxios(`genre/movie/list`)
-    
-    const categories = data.genres
-    console.log(categories)
+const createCategories = (categories, container) => {
+
+    container.innerHTML = ""
+
     categories.forEach(category => {
         
         const categoryContainer = document.createElement("div")
@@ -51,8 +48,47 @@ async function getCategoriesList(){
         categoryTitle.appendChild(categoryTitleText);
         categoryContainer.appendChild(categoryLogo)
         categoryContainer.appendChild(categoryTitle);
-        previewCategoriesContainer.appendChild(categoryContainer);
+
+        categoryContainer.addEventListener("click", () => {
+            location.hash = `#category=${category.id}-${category.name}`
+        })
+        container.appendChild(categoryContainer);
 
     })
 }
 
+//Api calls
+
+async function getTrendingMoviesPreview(){
+    const { data } = await apiAxios(`trending/movie/day`)
+    const movies = data.results
+
+    trendingMovieList.innerHTML = ""
+
+    createMovies(movies, trendingMovieList)
+
+}
+
+async function getCategoriesList(){
+    const { data } = await apiAxios(`genre/movie/list`)
+    
+    const categories = data.genres
+
+    createCategories(categories, previewCategoriesContainer)
+    
+}
+
+async function getMoviesByCategory(id, name){
+    const { data } = await apiAxios("discover/movie", {
+        params: {
+            with_genres: id
+        }
+    })
+    const movies = data.results
+
+    categoryMovieList.innerHTML = ""
+    categoryName.innerText = name
+
+    createMovies(movies, categoryMovieList)
+    
+}

@@ -2,7 +2,8 @@
 const mainContainer = document.querySelector(".main_container");
 const mainContainerBackground = document.querySelector(".main_container--background");
 
-const mainSearchContainer = document.querySelector(".main_header--search");
+const mainSearchContainerFull = document.querySelector(".main_header--search");
+const mainSearchContainer = document.querySelector(".main_search-Form");
 
 
 const mainTrendingContainer = document.querySelector(".main-trending_container");
@@ -13,7 +14,24 @@ const previewCategoriesContainer = document.querySelector(".main-categories_cont
 
 // sections categories
 const categoriesContainer = document.querySelector(".main_header--categories")
+const categoryName = document.querySelector(".main_header--categories h2")
+const categoryMovieList = document.querySelector(".main_header--categories .main_header--categoryList")
+
+
+//sections movieDetail
+const movieDetailBackground = document.querySelector(".main_header--movie")
+const movieDetailContainer = document.querySelector(".movie-info_container")
+
+//sections genericMovies
+
+const genericMoviesContainer = document.querySelector(".main-generic_container")
 
 
 //elements
 const backButton = document.querySelector(".main_back-button")
+
+const titleSearch = document.querySelector(".main_search-Title")
+const inputSearch = document.querySelector(".main_search-Form input")
+const buttonSearch = document.querySelector(".main_search-Form button")
+
+const buttonTrends = document.querySelector(".main-trending_header button")
