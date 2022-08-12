@@ -21,6 +21,9 @@ const categoryMovieList = document.querySelector(".main_header--categories .main
 //sections movieDetail
 const movieDetailBackground = document.querySelector(".main_header--movie")
 const movieDetailContainer = document.querySelector(".movie-info_container")
+const movieDetailCategories = document.querySelector(".movie-info_container .movie_categories")
+const movieDetailSimilarMoviesContainer = document.querySelector(".movie-info_container .movie_similars")
+const movieDetailSimilarList = document.querySelector(".movie-info_container .movie_similars .movie_similars--list")
 
 //sections genericMovies
 
@@ -36,3 +39,7 @@ const inputSearch = document.querySelector(".main_search-Form input")
 const buttonSearch = document.querySelector(".main_search-Form button")
 
 const buttonTrends = document.querySelector(".main-trending_header button")
+
+const movieDetailTitle = document.querySelector(".movie-info_container h1")
+const movieDetailRate = document.querySelector(".movie-info_container .movie-info_rate span")
+const movieDetailDescription = document.querySelector(".movie-info_container p")

@@ -17,6 +17,11 @@ const createMovies = (movies, container) => {
         const movieContainer = document.createElement('div');
         movieContainer.classList.add('movie_container');
 
+        movieContainer.addEventListener('click', () => {
+            location.hash = `movie=${movie?.id}`;
+        })
+
+
         const movieImg = document.createElement('img');
         movieImg.setAttribute("alt", movie.title)
         movieImg.setAttribute("src", `https://image.tmdb.org/t/p/w300${movie.poster_path}`);
@@ -66,6 +71,7 @@ async function getTrendingMoviesPreview(){
     trendingMovieList.innerHTML = ""
 
     createMovies(movies, trendingMovieList)
+    trendingMovieList.scrollTo(0,0)
 
 }
 
@@ -106,4 +112,45 @@ async function getMoviesBySearch(query){
     genericMoviesList.innerHTML = ""
 
     createMovies(movies, genericMoviesList)
+}
+
+async function getTrendingMovies(){
+    const { data } = await apiAxios(`trending/movie/day`)
+    const movies = data.results
+
+    genericMoviesList.innerHTML = ""
+
+    titleSearch.innerText = "Trends"
+    createMovies(movies, genericMoviesList)
+}
+
+async function getMovieById(id){
+    const { data: movie } = await apiAxios(`movie/${id}`)
+
+    movieDetailBackground.style.background = `
+    linear-gradient(
+        180deg, 
+        rgba(0, 0, 0, 0.35) 19.27%, 
+        rgba(0, 0, 0, 0) 29.17%
+        ),
+    url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`
+
+    movieDetailTitle.textContent = movie.title
+    movieDetailRate.textContent = parseFloat(movie.vote_average.toFixed(1))
+    movieDetailDescription.textContent = movie.overview
+
+    createCategories(movie.genres, movieDetailCategories)
+    getRelatedMovieById(id)
+}
+
+async function getRelatedMovieById(id){
+    const { data } = await apiAxios(`movie/${id}/similar`)
+    console.log(data)
+
+    const relatedMovies = data.results
+    movieDetailSimilarList.innerHTML = ""
+    createMovies(relatedMovies, movieDetailSimilarList)
+    movieDetailSimilarList.scrollTo(0,0)
+
+
 }

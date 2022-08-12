@@ -5,7 +5,7 @@ buttonTrends.addEventListener("click", () => {
     location.hash = "#trends"
 })
 backButton.addEventListener("click", () => {
-    location.hash = window.history.back();
+    history.back();
     categoryMovieList.innerHTML = ""
     categoryName.innerText = ""
 })
@@ -38,6 +38,7 @@ function homePage(){
     
     mainContainerBackground.classList.remove("inactive")
     
+    mainSearchContainerFull.classList.remove("inactive")
     mainSearchContainer.classList.remove("inactive");
     inputSearch.value = ""
     
@@ -116,6 +117,10 @@ function movieDetailsPage(){
 
     //genericMoviesSection
     genericMoviesContainer.classList.add("inactive")
+
+    const [_, movieId] = location.hash.split("=")
+    console.log(movieId)
+    getMovieById(movieId)
 }
 function searchPage(){
     console.log("Search")
@@ -123,8 +128,6 @@ function searchPage(){
     categoriesContainer.classList.add("inactive")
 
     mainContainerBackground.classList.add("inactive")
-
-    
 
     mainTrendingContainer.classList.add("inactive")
 
@@ -138,6 +141,7 @@ function searchPage(){
     movieDetailBackground.classList.add("inactive")
 
     //searchPage
+    mainSearchContainerFull.classList.remove("inactive")
     mainSearchContainer.classList.remove("inactive");
     titleSearch.classList.remove("inactive");
     //genericMoviesSection
@@ -154,8 +158,6 @@ function trendsPage(){
 
     mainContainerBackground.classList.add("inactive")
 
-    
-
     mainTrendingContainer.classList.add("inactive")
 
     mainPreviewCategoriesContainer.classList.add("inactive");
@@ -169,7 +171,33 @@ function trendsPage(){
 
     //searchPage
     mainSearchContainer.classList.add("inactive");
-    titleSearch.classList.remove("add");
+    titleSearch.classList.remove("inactive");
     //genericMoviesSection
     genericMoviesContainer.classList.remove("inactive")
+
+    getTrendingMovies()
 }
+//navbar
+const menuHamburger = document.querySelector(".navbar_menu")
+const menuClose = document.querySelector(".navbar_close")
+const menuHidden = document.querySelector(".navbar_mobile-hidden")
+
+const openNavigation = () => {
+    menuHamburger.style.display = "none"
+
+    menuClose.style.display = "block"
+
+    menuHidden.classList.add("shown")
+    menuHidden.classList.remove("hidden")
+
+}
+const closeNavigation = () => {
+    menuHamburger.style.display = "block"
+
+    menuClose.style.display = "none"
+
+    menuHidden.classList.remove("shown")
+    menuHidden.classList.add("hidden")
+    
+}
+//end of navbar

@@ -9,12 +9,13 @@ html{
     /* scroll-behavior: smooth; */
 }
 body{
-    
+    scroll-behavior: smooth;
     background-color: #082a3a;
 }
 button{
     border: none;
     background: none;
+    cursor: pointer;
 }
 ul{
     list-style: none;
@@ -26,32 +27,101 @@ a{
     outline: none;
 }
 .header_container{
-    position: fixed;
     width: 100%;
     height: auto;
-    background-color: #071722;
-    z-index: 3;
 }
 .navbar_container{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: auto;
+    padding: 10px 0;
+    z-index: 10;
     padding: 20px 25px;
+    background-color: #071722;
 }
-.navbar_container .navbar_logo{
-    width: 40px;
+.navbar_mobile{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
 }
-.navbar_buttons .navbar_menu{
-    padding-top: 3px;
-    width: 40px;
-}
-.navbar_buttons button{
+.navbar_mobile button{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.navbar_mobile li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar_mobile p{
+    color: #8cc8d4;
+    padding-top: 10px;
+    font-size: 3rem;
+    font-weight: 700;
+}
+.navbar_container .navbar_logo{
+    width: 40px;
+}
+.navbar_container .navbar_menu{
+    padding-top: 3px;
+    width: 40px;
+}
+.navbar_close{
+    display: none;
+    width: 50px;
+    height: 35px
+}
 
+.navbar_mobile-hidden{
+    display: inline-block;
+    width: 100vw;
+    min-height: 220px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    position: absolute;
+    top: 62.4px;
+    left: 103.5vw;
+    padding: 20px 0 10px 0;
+    list-style: none;
+    background: #000;
+    overflow-x: hidden;
+    text-align: center;
+    z-index: 4;
+}
+.navbar_mobile-hidden li{
+    width: 100%;
+    max-height: 45px;
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgb(59, 58, 58);
+}
+.navbar_mobile-hidden li a{
+    text-decoration: none;
+    color: #fff;
+}
+.navbar_mobile-hidden li:last-child{
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+.shown{
+    display: flex;
+    transform: translateX(-106vw);
+    transition: all 1.5s ease-out;
+}
+.hidden{
+    display: flex;
+    transform: translateX(100vw);
+    transition: all 1.5s ease-in;
+}
+.navbar_desktop{
+    display: none;
+}
 
 
 /* main*/
@@ -195,7 +265,7 @@ a{
     gap: 20px;
     width: 90%;
     margin: 0 auto;
-    padding: 30px 0
+    padding: 30px 0;
 }
 .main-trending_header{
     display: flex;
@@ -335,7 +405,7 @@ a{
     flex-direction: column;
     gap: 22px;
     width: 100%;
-    margin: 300px auto 0 auto;
+    margin: 440px auto 0 auto;
     padding: 25px 15px;
     background-color: #082a3a;
     color: #fff;
@@ -346,7 +416,7 @@ a{
     justify-content: space-between;
 }
 .movie_title h1{
-    font-size: 1.9rem;
+    font-size: 2.1rem;
 }
 .movie-info_rate{
     display: flex;
@@ -372,8 +442,9 @@ a{
     grid-template-columns: auto auto;
 }
 .movie_categories .category_container{
-    padding-top: 3px;
-    padding-bottom: 3px;
+    min-width: 130px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .movie_categories .category_container h3{
     font-size: 1.3rem;
@@ -420,6 +491,44 @@ a{
     min-height: 200px;
     max-height: 230px;
 }
+
+/* footer */
+.footer_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    background-color: #071722;
+}
+.footer_content{
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footer_content p{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff
+
+}
+.footer_logos{
+    display: flex;
+    gap: 15px;
+}
+.footer_logos img{
+    width: 30px;
+}
+.footer_logos a:hover{
+    opacity: 0.5;
+}
+
 
 .inactive{
     display: none;

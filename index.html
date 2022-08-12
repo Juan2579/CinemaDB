@@ -14,11 +14,13 @@
     
     <header class="header_container">
         <nav class="navbar_container">
-            <img class="navbar_logo" src="./assets/icons/logo1.svg" alt="">
-            <ul class="navbar_buttons">
-                <button><img class="navbar_menu" src="./assets/icons/menu.svg" alt=""></button>
-                <button><img src="./assets/icons/close.svg" alt=""></button>
+            <ul class="navbar_mobile">
+                <li>
+                    <img class="navbar_logo" src="./assets/icons/logo1.svg" alt="">
+                    <p>CINEMA DB</p>
+                </li>
             </ul>
+            
         </nav>
     </header>
 
@@ -37,15 +39,15 @@
                     <h1>CINEMA DB</h1>
                 </div>
                 <p>Encuentra tus peliculas favoritas, en tendencias y mucho más</p>
-                <a href="">Get Started</a>
+                <a href="#scroll">Get Started</a>
             </section>
         </div>
 
         <section class="main_header--search">
-            <h1 class="main_search-Title">Vengadores</h1>
-            <form class="main_search-Form">
+            <h1 class="main_search-Title">Make a search!</h1>
+            <form id="scroll" class="main_search-Form">
                 <input type="text" placeholder="Search for a movie">
-                <button><img src="./assets/icons/searchIcon.svg" alt=""></button>
+                <button type="button"><img src="./assets/icons/searchIcon.svg" alt=""></button>
             </form>
         </section>
 
@@ -62,34 +64,18 @@
             </div>
             <p>Wisecracking mercenary deadpool battles the evil and powrful Cable and other bad guys to save a boy life</p>
             <div class="movie_categories">
-                <div class="category_container">
+                <!-- <div class="category_container">
                     <img src="./assets/icons/category28Action.svg">
                     <h3>ACCION</h3>
-                </div> 
-                <div class="category_container">
-                    <img src="./assets/icons/category28Action.svg">
-                    <h3>ACCION</h3>
-                </div> 
-                <div class="category_container">
-                    <img src="./assets/icons/category28Action.svg">
-                    <h3>ACCION</h3>
-                </div> 
+                </div>  -->
             </div>
             <div class="movie_similars">
                 <h3>Similar Movies</h3>
                 <article class="movie_similars--list">
-                    <div class="movie_container">
+                    <!-- <div class="movie_container">
                         <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
                         <p>Upgrade</p>
-                    </div>
-                    <div class="movie_container">
-                        <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
-                        <p>Upgrade</p>
-                    </div>
-                    <div class="movie_container">
-                        <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
-                        <p>Upgrade</p>
-                    </div>
+                    </div> -->
                 </article>
             </div>
         </div>
@@ -118,7 +104,7 @@
             </article>
         </section>
 
-        <section class="main-categories_container">
+        <section id="categories" class="main-categories_container">
             <h2>Genres</h2>
 
             <article class="main-categories_categoryList">
@@ -128,7 +114,6 @@
                 </div> -->
             </article>
         </section>
-
 
         <section class="main-generic_container">
             <article class="main_generic-list">
@@ -140,7 +125,15 @@
         </section>
     </main>
     
-    <footer>
+    <footer class="footer_container">
+        <section class="footer_content">
+            <p>Developed by Juan Gualdrón</p>
+            <div class="footer_logos">
+                <img src="./assets/icons/github.svg" alt="">
+                <img src="./assets/icons/twitter.svg" alt="">
+                <img src="./assets/icons/instagram.svg" alt="">
+            </div>
+        </section>
 
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
