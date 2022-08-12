@@ -24,7 +24,7 @@ const createMovies = (movies, container) => {
 
         const movieImg = document.createElement('img');
         movieImg.setAttribute("alt", movie.title)
-        movieImg.setAttribute("src", `https://image.tmdb.org/t/p/w300${movie.poster_path}`);
+        movieImg.setAttribute("src", `https://image.tmdb.org/t/p/w500${movie.poster_path}`);
 
         const movieName = document.createElement("p")
         const movieNameTitle = document.createTextNode(movie.title);
@@ -133,8 +133,8 @@ async function getMovieById(id){
         rgba(0, 0, 0, 0.35) 19.27%, 
         rgba(0, 0, 0, 0) 29.17%
         ),
-    url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`
-
+    )`
+    movieDetailBackgroundUpdated.src = `https://image.tmdb.org/t/p/original${movie.poster_path}`
     movieDetailTitle.textContent = movie.title
     movieDetailRate.textContent = parseFloat(movie.vote_average.toFixed(1))
     movieDetailDescription.textContent = movie.overview

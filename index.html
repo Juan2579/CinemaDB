@@ -7,8 +7,12 @@
     <title>CinemaDB</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="description" content="This is a website with data about the most popular movies in the world">
+    <meta name=”robots”  content="index,follow">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/logo1.svg"> 
     <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Inline+One:ital@1&family=Overpass:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" media="(min-width: 680px)" href="./styles/desktop.css">
 </head>
 <body>
     
@@ -30,7 +34,7 @@
         
         <div class="main_container--background">
             <picture class="main_background">
-                <source media="(min-width: 720px)" srcset="">
+                <source media="(min-width: 640px)" srcset="./assets/images/bgDesktop.jpg">
                 <img class="main_background" src="./assets/images/bgMobile.jpg" alt="">
             </picture>
             <section class="main_content">
@@ -38,7 +42,7 @@
                     <img class="navbar_logo" src="./assets/icons/logo1.svg" alt="">
                     <h1>CINEMA DB</h1>
                 </div>
-                <p>Encuentra tus peliculas favoritas, en tendencias y mucho más</p>
+                <p>Find your favorite movies, trending movies and much more!</p>
                 <a href="#scroll">Get Started</a>
             </section>
         </div>
@@ -52,33 +56,35 @@
         </section>
 
         <section class="main_header--movie">
-            
-        </section>
-        <div class="movie-info_container">
-            <div class="movie_title">
-                <h1>Deadpool</h1>
-                <div class="movie-info_rate">
-                    <img src="./assets/icons/starIcon.svg" alt="">
-                    <span>7.6</span>
+            <img class="movie-detail_background" src="" alt="">
+            <div class="movie-info_container">
+                <div class="movie_title">
+                    <h1>Deadpool</h1>
+                    <div class="movie-info_rate">
+                        <img src="./assets/icons/starIcon.svg" alt="">
+                        <span>7.6</span>
+                    </div>
+                </div>
+                <p>Wisecracking mercenary deadpool battles the evil and powrful Cable and other bad guys to save a boy life</p>
+                <h3>Movie Categories</h3>
+                <div class="movie_categories">
+                    <!-- <div class="category_container">
+                        <img src="./assets/icons/category28Action.svg">
+                        <h3>ACCION</h3>
+                    </div>  -->
+                </div>
+                <div class="movie_similars">
+                    <h3>Similar Movies</h3>
+                    <article class="movie_similars--list">
+                        <!-- <div class="movie_container">
+                            <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
+                            <p>Upgrade</p>
+                        </div> -->
+                    </article>
                 </div>
             </div>
-            <p>Wisecracking mercenary deadpool battles the evil and powrful Cable and other bad guys to save a boy life</p>
-            <div class="movie_categories">
-                <!-- <div class="category_container">
-                    <img src="./assets/icons/category28Action.svg">
-                    <h3>ACCION</h3>
-                </div>  -->
-            </div>
-            <div class="movie_similars">
-                <h3>Similar Movies</h3>
-                <article class="movie_similars--list">
-                    <!-- <div class="movie_container">
-                        <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" alt="">
-                        <p>Upgrade</p>
-                    </div> -->
-                </article>
-            </div>
-        </div>
+        </section>
+        
  
         <section class="main_header--categories">
             <h2>Genres</h2>
@@ -129,9 +135,9 @@
         <section class="footer_content">
             <p>Developed by Juan Gualdrón</p>
             <div class="footer_logos">
-                <img src="./assets/icons/github.svg" alt="">
-                <img src="./assets/icons/twitter.svg" alt="">
-                <img src="./assets/icons/instagram.svg" alt="">
+                <a href="https://github.com/Juan2579"><img src="./assets/icons/github.svg" alt=""></a>
+                <a href="https://twitter.com/JuanDavidGuald6"><img src="./assets/icons/twitter.svg" alt=""></a>
+                <a href="https://www.instagram.com/juanx.dev/"><img src="./assets/icons/instagram.svg" alt=""></a>
             </div>
         </section>
 

@@ -8,6 +8,17 @@ html{
     font-size: 62.5%;
     /* scroll-behavior: smooth; */
 }
+::-webkit-scrollbar {
+    width: 8px;
+    height: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #071722;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+  }
 body{
     scroll-behavior: smooth;
     background-color: #082a3a;
@@ -65,70 +76,15 @@ a{
 .navbar_container .navbar_logo{
     width: 40px;
 }
-.navbar_container .navbar_menu{
-    padding-top: 3px;
-    width: 40px;
-}
-.navbar_close{
-    display: none;
-    width: 50px;
-    height: 35px
-}
 
-.navbar_mobile-hidden{
-    display: inline-block;
-    width: 100vw;
-    min-height: 220px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 20px;
-    position: absolute;
-    top: 62.4px;
-    left: 103.5vw;
-    padding: 20px 0 10px 0;
-    list-style: none;
-    background: #000;
-    overflow-x: hidden;
-    text-align: center;
-    z-index: 4;
-}
-.navbar_mobile-hidden li{
-    width: 100%;
-    max-height: 45px;
-    padding-bottom: 10px;
-    font-weight: 700;
-    font-size: 1.3rem;
-    border-bottom: 1px solid rgb(59, 58, 58);
-}
-.navbar_mobile-hidden li a{
-    text-decoration: none;
-    color: #fff;
-}
-.navbar_mobile-hidden li:last-child{
-    border-bottom: none;
-    padding-bottom: 0px;
-}
-.shown{
-    display: flex;
-    transform: translateX(-106vw);
-    transition: all 1.5s ease-out;
-}
-.hidden{
-    display: flex;
-    transform: translateX(100vw);
-    transition: all 1.5s ease-in;
-}
-.navbar_desktop{
-    display: none;
-}
 
 
 /* main*/
 .main_container{
     width: 100%;
     padding-top: 80px;
-    height: auto;
+    min-height: 1300px;
+    max-height: 2000px;
 }
 .main_container--background{
     position: relative;
@@ -199,6 +155,7 @@ a{
     position: absolute;
     top: 100px;
     left: 10px;
+    cursor: pointer;
 }
 
 /* form search */
@@ -227,6 +184,7 @@ a{
 }
 .main_search-Form input{
     width: 80%;
+    max-width: 400px;
     height: 30px;
     padding-left: 5px;
     background-color: #071722;
@@ -304,7 +262,8 @@ a{
     max-width: 200px;
     width: 100%;
     min-height: 200px;
-    max-height: 300px;
+    max-height: 400px;
+    cursor: pointer;
 }
 .movie_container img{
     min-width: 180px;
@@ -351,6 +310,7 @@ a{
     border-radius: 10px;
     background-color: #071722;
     border: 1px solid #61E8F1;
+    cursor: pointer;
 }
 .category_container img{
     width: 40px;
@@ -393,23 +353,26 @@ a{
 }
 /* movie section */
 .main_header--movie{
-    background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
-    background-size: cover !important;
-    height: 480px;
-    position: fixed;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%);
+    height: auto;
     width: 100%;
+    position: relative;
+}
+.movie-detail_background{
+    width: 100%;
+    height: 480px;
+
 }
 .movie-info_container{
     display: flex;
     flex-direction: column;
     gap: 22px;
     width: 100%;
-    margin: 460px auto 0 auto;
-    padding: 25px 15px;
+    margin: 0 auto 0 auto;
+    padding: 25px 15px 10px 15px;
     background-color: #082a3a;
     color: #fff;
-    position: relative;
+    position: absolute;
     min-height: 700px;
 }
 .movie_title{
@@ -435,6 +398,9 @@ a{
 .movie-info_container p{
     font-size: 1.5rem;
     color: #81b0c4;
+}
+.movie-info_container h3{
+    font-size: 1.8rem;
 }
 .movie_categories{
     width: 90%;
@@ -525,6 +491,7 @@ a{
 }
 .footer_logos img{
     width: 30px;
+    cursor: pointer;
 }
 .footer_logos a:hover{
     opacity: 0.5;

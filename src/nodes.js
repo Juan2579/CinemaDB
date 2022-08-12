@@ -20,6 +20,7 @@ const categoryMovieList = document.querySelector(".main_header--categories .main
 
 //sections movieDetail
 const movieDetailBackground = document.querySelector(".main_header--movie")
+const movieDetailBackgroundUpdated = document.querySelector(".main_header--movie .movie-detail_background")
 const movieDetailContainer = document.querySelector(".movie-info_container")
 const movieDetailCategories = document.querySelector(".movie-info_container .movie_categories")
 const movieDetailSimilarMoviesContainer = document.querySelector(".movie-info_container .movie_similars")
