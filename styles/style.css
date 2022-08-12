@@ -396,7 +396,7 @@ a{
     background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
     background-size: cover !important;
-    height: 460px;
+    height: 480px;
     position: fixed;
     width: 100%;
 }
@@ -405,7 +405,7 @@ a{
     flex-direction: column;
     gap: 22px;
     width: 100%;
-    margin: 440px auto 0 auto;
+    margin: 460px auto 0 auto;
     padding: 25px 15px;
     background-color: #082a3a;
     color: #fff;
