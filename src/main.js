@@ -46,7 +46,7 @@ const createCategories = (categories, container) => {
         categoryContainer.classList.add('category_container');
 
         const categoryLogo = document.createElement('img')
-        categoryLogo.setAttribute('src',`../assets/icons/category${category.id}${category.name}.svg`)
+        categoryLogo.setAttribute('src',`./assets/icons/category${category.id}${category.name}.svg`)
         const categoryTitle = document.createElement("h3")
         const categoryTitleText = document.createTextNode(category.name)
 
