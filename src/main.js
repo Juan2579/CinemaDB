@@ -92,3 +92,18 @@ async function getMoviesByCategory(id, name){
     createMovies(movies, categoryMovieList)
     
 }
+
+async function getMoviesBySearch(query){
+    const { data } = await apiAxios("search/movie", {
+        params: {
+            query
+        }
+    })
+    const movies = data.results
+
+    
+    titleSearch.innerText = query[0].toUpperCase() + query.slice(1)
+    genericMoviesList.innerHTML = ""
+
+    createMovies(movies, genericMoviesList)
+}

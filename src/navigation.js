@@ -1,12 +1,11 @@
 buttonSearch.addEventListener("click", () => {
-    inputSearch.value
-    location.hash = "#search="
+    location.hash = `#search=${inputSearch.value.trim()}`
 })
 buttonTrends.addEventListener("click", () => {
     location.hash = "#trends"
 })
 backButton.addEventListener("click", () => {
-    location.hash = "#home";
+    location.hash = window.history.back();
     categoryMovieList.innerHTML = ""
     categoryName.innerText = ""
 })
@@ -40,6 +39,7 @@ function homePage(){
     mainContainerBackground.classList.remove("inactive")
     
     mainSearchContainer.classList.remove("inactive");
+    inputSearch.value = ""
     
     mainTrendingContainer.classList.remove("inactive")
     
@@ -142,6 +142,10 @@ function searchPage(){
     titleSearch.classList.remove("inactive");
     //genericMoviesSection
      genericMoviesContainer.classList.remove("inactive")
+
+
+    const query = location.hash.split("=")
+    getMoviesBySearch(query[1].replaceAll("%20", " "))
 }
 function trendsPage(){
     console.log("Trends")

@@ -25,6 +25,7 @@ const movieDetailContainer = document.querySelector(".movie-info_container")
 //sections genericMovies
 
 const genericMoviesContainer = document.querySelector(".main-generic_container")
+const genericMoviesList = document.querySelector(".main_generic-list")
 
 
 //elements
