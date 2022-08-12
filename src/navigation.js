@@ -8,6 +8,7 @@ backButton.addEventListener("click", () => {
     history.back();
     categoryMovieList.innerHTML = ""
     categoryName.innerText = ""
+    mainContainer.style.minHeight = ""
 })
 
 window.addEventListener("DOMContentLoaded", navigator, false)
