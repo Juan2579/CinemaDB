@@ -8,8 +8,6 @@
 /* main */
 .main_container{
     padding-top: 74px;
-    min-height: 1400px;
-    max-height: 2000px;
 }
 .main_container--background{
     height: 93vh;
@@ -137,7 +135,7 @@
     display: block;
     height: auto;
     margin: 0 auto;
-    max-height: 70vh;
+    max-height: 80vh;
     object-fit: cover;
     width: 30%;
 }

@@ -371,7 +371,6 @@ a{
     background-color: #082a3a;
     color: #fff;
     position: absolute;
-    min-height: 700px;
 }
 .movie_title{
     display: flex;
