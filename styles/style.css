@@ -83,6 +83,7 @@ a{
 .main_container{
     width: 100%;
     padding-top: 80px;
+    position: relative;
 }
 .main_container--background{
     position: relative;
@@ -370,7 +371,7 @@ a{
     padding: 25px 15px 10px 15px;
     background-color: #082a3a;
     color: #fff;
-    position: absolute;
+
 }
 .movie_title{
     display: flex;

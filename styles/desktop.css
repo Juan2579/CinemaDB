@@ -126,6 +126,7 @@
 .main_header--movie{
     width: 100%;
     height: auto;
+    padding-top: 20px;
 
 }
 .movie-info_container{
@@ -189,12 +190,6 @@
 .footer_logos img{
     width: 45px;
 
-}
-@media (min-width: 1200px) {
-    .main_container{
-        min-height: 1700px;
-        max-height: 2000px;
-    }
 }
 @media (min-width: 1450px) {
     /* categories movies  */
