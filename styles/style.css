@@ -83,8 +83,6 @@ a{
 .main_container{
     width: 100%;
     padding-top: 80px;
-    min-height: 1300px;
-    max-height: 2000px;
 }
 .main_container--background{
     position: relative;

@@ -96,7 +96,6 @@ async function getMoviesByCategory(id, name){
     categoryName.innerText = name
 
     createMovies(movies, categoryMovieList)
-    mainContainer.style.minHeight = "2650px"
 }
 
 async function getMoviesBySearch(query){
