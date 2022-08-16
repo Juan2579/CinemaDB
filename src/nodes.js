@@ -4,6 +4,7 @@ const mainContainerBackground = document.querySelector(".main_container--backgro
 
 const mainSearchContainerFull = document.querySelector(".main_header--search");
 const mainSearchContainer = document.querySelector(".main_search-Form");
+const mainSearchMoviesContainer = document.querySelectorAll(".main_search-Form .movie_container");
 
 
 const mainTrendingContainer = document.querySelector(".main-trending_container");

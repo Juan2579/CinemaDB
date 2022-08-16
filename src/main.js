@@ -10,8 +10,25 @@ const apiAxios = axios.create({
     }
 })
 
+const lazyLoading = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting == true){
+            const url = entry.target.getAttribute("data-img")
+
+            if (url == "https://image.tmdb.org/t/p/w500null") {
+                entry.target.setAttribute("src", "../assets/images/imageError.jpg")
+            } else {
+                entry.target.setAttribute("src", url)
+            }
+            console.log(entry.target.getAttribute("src"))
+            lazyLoading.unobserve(entry.target)
+        }
+    })
+})
+
+
 //Helper functions
-const createMovies = (movies, container) => {
+const createMovies = (movies, container, lazyLoad = false) => {
     movies.forEach(movie => {
         
         const movieContainer = document.createElement('div');
@@ -24,11 +41,17 @@ const createMovies = (movies, container) => {
 
         const movieImg = document.createElement('img');
         movieImg.setAttribute("alt", movie.title)
-        movieImg.setAttribute("src", `https://image.tmdb.org/t/p/w500${movie.poster_path}`);
+        movieImg.setAttribute(
+            lazyLoad ? "data-img" : "src",
+            `https://image.tmdb.org/t/p/w500${movie.poster_path}`);
 
         const movieName = document.createElement("p")
         const movieNameTitle = document.createTextNode(movie.title);
         movieName.appendChild(movieNameTitle);
+
+        if(lazyLoad){
+            lazyLoading.observe(movieImg)
+        }
 
         movieContainer.appendChild(movieImg);
         movieContainer.appendChild(movieName);
@@ -70,7 +93,7 @@ async function getTrendingMoviesPreview(){
 
     trendingMovieList.innerHTML = ""
 
-    createMovies(movies, trendingMovieList)
+    createMovies(movies, trendingMovieList, true)
     trendingMovieList.scrollTo(0,0)
 
 }
@@ -92,10 +115,10 @@ async function getMoviesByCategory(id, name){
     })
     const movies = data.results
 
-    categoryMovieList.innerHTML = ""
+    categoryMovieList.innerHTML = ""  
     categoryName.innerText = name
 
-    createMovies(movies, categoryMovieList)
+    createMovies(movies, categoryMovieList, true)
 }
 
 async function getMoviesBySearch(query){
@@ -110,7 +133,7 @@ async function getMoviesBySearch(query){
     titleSearch.innerText = query[0].toUpperCase() + query.slice(1)
     genericMoviesList.innerHTML = ""
 
-    createMovies(movies, genericMoviesList)
+    createMovies(movies, genericMoviesList, true)
 }
 
 async function getTrendingMovies(){
@@ -120,7 +143,7 @@ async function getTrendingMovies(){
     genericMoviesList.innerHTML = ""
 
     titleSearch.innerText = "Trends"
-    createMovies(movies, genericMoviesList)
+    createMovies(movies, genericMoviesList, true)
 }
 
 async function getMovieById(id){
@@ -148,7 +171,7 @@ async function getRelatedMovieById(id){
 
     const relatedMovies = data.results
     movieDetailSimilarList.innerHTML = ""
-    createMovies(relatedMovies, movieDetailSimilarList)
+    createMovies(relatedMovies, movieDetailSimilarList, true)
     movieDetailSimilarList.scrollTo(0,0)
 
 

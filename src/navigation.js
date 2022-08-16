@@ -44,6 +44,9 @@ function homePage(){
     
     mainTrendingContainer.classList.remove("inactive")
     
+    mainSearchMoviesContainer.forEach(movie => {
+        movie.classList.add("movie_container--skeleton")
+    })
     mainPreviewCategoriesContainer.classList.remove("inactive");
     
     titleSearch.classList.add("inactive")
@@ -71,7 +74,9 @@ function categoriesPage(){
     mainSearchContainer.classList.add("inactive");
 
     mainTrendingContainer.classList.add("inactive")
-
+    mainSearchMoviesContainer.forEach(movie => {
+        movie.classList.add("movie_container--skeleton")
+    })
     mainPreviewCategoriesContainer.classList.add("inactive");
 
     //categoriesPage
@@ -144,6 +149,9 @@ function searchPage(){
     mainSearchContainerFull.classList.remove("inactive")
     mainSearchContainer.classList.remove("inactive");
     titleSearch.classList.remove("inactive");
+    mainSearchMoviesContainer.forEach(movie => {
+        movie.classList.add("movie_container--skeleton")
+    })
     //genericMoviesSection
      genericMoviesContainer.classList.remove("inactive")
 
@@ -162,6 +170,10 @@ function trendsPage(){
 
     mainPreviewCategoriesContainer.classList.add("inactive");
 
+
+    mainSearchMoviesContainer.forEach(movie => {
+        movie.classList.add("movie_container--skeleton")
+    })
     //categoriesPage
     categoriesContainer.classList.add("inactive")
 

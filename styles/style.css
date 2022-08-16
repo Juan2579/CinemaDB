@@ -509,6 +509,14 @@ a{
     min-height: 270px;
     max-height: 300px;
 }
+.category_container--skeleton{
+    animation: loading-skeleton infinite 1.5s;
+    background-color: rgb(30, 65, 82);
+    max-width: 170px;
+    height: 52px;
+    padding: 5px 7px 5px 5px;
+    border-radius: 10px;
+}
 
 @keyframes loading-skeleton {
     0%, 100% {
