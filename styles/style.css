@@ -499,3 +499,22 @@ a{
 .inactive{
     display: none;
 }
+
+.movie_container--skeleton{
+    animation: loading-skeleton infinite 1.5s;
+    background-color: rgb(30, 65, 82);
+    min-width: 180px;
+    max-width: 200px;
+    width: 100%;
+    min-height: 270px;
+    max-height: 300px;
+}
+
+@keyframes loading-skeleton {
+    0%, 100% {
+      opacity: 100%;
+    }
+    50% {
+      opacity: 0%;
+    }
+  }
