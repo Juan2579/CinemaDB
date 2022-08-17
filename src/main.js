@@ -144,6 +144,26 @@ async function getTrendingMovies(){
 
     titleSearch.innerText = "Trends"
     createMovies(movies, genericMoviesList, true)
+
+    const btnLoadMore = document.createElement("button")
+    btnLoadMore.innerText = "Cargar más"
+    btnLoadMore.addEventListener("click", getPaginatedTrendingMovies())
+    genericMoviesList.appendChild(btnLoadMore)
+}
+
+async function getPaginatedTrendingMovies(){
+    const { data } = await apiAxios(`trending/movie/day`, {
+        params: {
+            page: 2
+        }
+    })
+    const movies = data.results
+
+    genericMoviesList.innerHTML = ""
+
+    titleSearch.innerText = "Trends"
+    createMovies(movies, genericMoviesList, true)
+
 }
 
 async function getMovieById(id){
