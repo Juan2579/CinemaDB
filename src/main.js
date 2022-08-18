@@ -110,6 +110,7 @@ async function getCategoriesList(){
 async function getMoviesByCategory(id, name){
     const { data } = await apiAxios("discover/movie", {
         params: {
+            page,
             with_genres: id
         }
     })
@@ -135,6 +136,33 @@ async function getMoviesBySearch(query){
 
     createMovies(movies, genericMoviesList, true)
 }
+async function getPaginatedMoviesBySearch(){
+    
+    const {
+        scrollTop,
+        scrollHeight,
+        clientHeight 
+    } = document.documentElement
+
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+
+    const pageIsNotMax = page < maxPage
+
+    if(scrollIsBottom){
+        page++
+        const { data } = await apiAxios(`search/movie`, {
+            params: {
+                query,
+                page,
+            }
+        })
+        const movies = data.results
+        createMovies(movies, genericMoviesList, true)
+        titleSearch.innerText = "Trends"
+    }
+}
+
+
 async function getTrendingMovies(page = 1){
     const { data } = await apiAxios(`trending/movie/day`, {
         params: {
@@ -142,23 +170,49 @@ async function getTrendingMovies(page = 1){
         }
     })
 
+    
     const movies = data.results
     if(page == 1){
         genericMoviesList.innerHTML = ""
     }
 
     titleSearch.innerText = "Trends"
-    createMovies(movies, genericMoviesList, true)
+    createMovies(movies, genericMoviesList)
 
-    const btnLoadMore = document.createElement("button")
-    btnLoadMore.innerText = "Cargar más"
-    genericMoviesList.appendChild(btnLoadMore)
+    // const btnLoadMore = document.createElement("button")
+    // btnLoadMore.innerText = "Cargar más"
+    // genericMoviesList.appendChild(btnLoadMore)
     
-    btnLoadMore.addEventListener("click", () => {
-        getTrendingMovies(page + 1)
-        btnLoadMore.remove();
-    })
+    // btnLoadMore.addEventListener("click", () => {
+    //     getTrendingMovies(page + 1)
+    //     btnLoadMore.remove();
+    // })
 
+}
+
+async function getPaginatedTrendingMovies(){
+    
+    const {
+        scrollTop,
+        scrollHeight,
+        clientHeight 
+    } = document.documentElement
+
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+
+    const pageIsNotMax = page < maxPage
+
+    if(scrollIsBottom){
+        page++
+        const { data } = await apiAxios(`trending/movie/day`, {
+            params: {
+                page
+            }
+        })
+        const movies = data.results
+        createMovies(movies, genericMoviesList, true)
+        titleSearch.innerText = "Trends"
+    }
 }
 
 

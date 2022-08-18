@@ -1,3 +1,6 @@
+let page = 1
+let maxPage;
+let infiniteScroll;
 buttonSearch.addEventListener("click", () => {
     location.hash = `#search=${inputSearch.value.trim()}`
 })
@@ -12,10 +15,16 @@ backButton.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded", navigator, false)
 window.addEventListener("hashchange", navigator, false)
+window.addEventListener("scroll", infiniteScroll, false)
 
 function navigator(){
     console.log({location})
     
+    if(infiniteScroll){
+        window.removeEventListener("scroll", infiniteScroll, {passive: false})
+        infiniteScroll = undefined
+    }
+
     if(location.hash.startsWith("#trends")){
         trendsPage()
     }else if(location.hash.startsWith("#search=")){
@@ -29,6 +38,10 @@ function navigator(){
     }
 
     window.scrollTo(0,0);
+
+    if(infiniteScroll){
+        window.addEventListener("scroll", infiniteScroll, false)
+    }
 }
 
 function homePage(){
@@ -188,4 +201,6 @@ function trendsPage(){
     genericMoviesContainer.classList.remove("inactive")
 
     getTrendingMovies()
+    page = 1
+    infiniteScroll = getPaginatedTrendingMovies
 }
