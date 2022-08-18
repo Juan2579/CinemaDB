@@ -135,36 +135,33 @@ async function getMoviesBySearch(query){
 
     createMovies(movies, genericMoviesList, true)
 }
+async function getTrendingMovies(page = 1){
+    const { data } = await apiAxios(`trending/movie/day`, {
+        params: {
+            page
+        }
+    })
 
-async function getTrendingMovies(){
-    const { data } = await apiAxios(`trending/movie/day`)
     const movies = data.results
-
-    genericMoviesList.innerHTML = ""
+    if(page == 1){
+        genericMoviesList.innerHTML = ""
+    }
 
     titleSearch.innerText = "Trends"
     createMovies(movies, genericMoviesList, true)
 
     const btnLoadMore = document.createElement("button")
     btnLoadMore.innerText = "Cargar más"
-    btnLoadMore.addEventListener("click", getPaginatedTrendingMovies())
     genericMoviesList.appendChild(btnLoadMore)
-}
-
-async function getPaginatedTrendingMovies(){
-    const { data } = await apiAxios(`trending/movie/day`, {
-        params: {
-            page: 2
-        }
+    
+    btnLoadMore.addEventListener("click", () => {
+        getTrendingMovies(page + 1)
+        btnLoadMore.remove();
     })
-    const movies = data.results
-
-    genericMoviesList.innerHTML = ""
-
-    titleSearch.innerText = "Trends"
-    createMovies(movies, genericMoviesList, true)
 
 }
+
+
 
 async function getMovieById(id){
     const { data: movie } = await apiAxios(`movie/${id}`)
