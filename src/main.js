@@ -116,28 +116,60 @@ async function getMoviesByCategory(id, name){
     })
     const movies = data.results
 
+    maxPage = data.total_pages
+    console.log(maxPage)
+
     categoryMovieList.innerHTML = ""  
     categoryName.innerText = name
 
     createMovies(movies, categoryMovieList, true)
 }
-
+function getPaginatedMoviesByCategory(id, name){
+    
+    return async function(){
+     const {
+         scrollTop,
+         scrollHeight,
+         clientHeight 
+     } = document.documentElement
+ 
+     const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+ 
+     const pageIsNotMax = page < maxPage
+ 
+     if(scrollIsBottom && pageIsNotMax){
+         page++
+         const { data } = await apiAxios("discover/movie", {
+            params: {
+                page,
+                with_genres: id
+            }
+        })
+         const movies = data.results
+         categoryName.innerText = name
+         createMovies(movies, categoryMovieList, true)
+     }
+    }
+ }
+ 
 async function getMoviesBySearch(query){
     const { data } = await apiAxios("search/movie", {
         params: {
-            query
+            query,
         }
     })
     const movies = data.results
-
+    maxPage = data.total_pages
+    console.log(maxPage)
     
     titleSearch.innerText = query[0].toUpperCase() + query.slice(1)
     genericMoviesList.innerHTML = ""
 
     createMovies(movies, genericMoviesList, true)
 }
-async function getPaginatedMoviesBySearch(){
+function getPaginatedMoviesBySearch(query){
     
+   return async function(){
     const {
         scrollTop,
         scrollHeight,
@@ -148,18 +180,19 @@ async function getPaginatedMoviesBySearch(){
 
     const pageIsNotMax = page < maxPage
 
-    if(scrollIsBottom){
+    if(scrollIsBottom && pageIsNotMax){
         page++
         const { data } = await apiAxios(`search/movie`, {
             params: {
-                query,
                 page,
+                query,
             }
         })
         const movies = data.results
         createMovies(movies, genericMoviesList, true)
         titleSearch.innerText = "Trends"
     }
+   }
 }
 
 
@@ -175,7 +208,7 @@ async function getTrendingMovies(page = 1){
     if(page == 1){
         genericMoviesList.innerHTML = ""
     }
-
+    maxPage = data.total_pages
     titleSearch.innerText = "Trends"
     createMovies(movies, genericMoviesList)
 
@@ -189,7 +222,6 @@ async function getTrendingMovies(page = 1){
     // })
 
 }
-
 async function getPaginatedTrendingMovies(){
     
     const {
@@ -237,13 +269,41 @@ async function getMovieById(id){
 }
 
 async function getRelatedMovieById(id){
-    const { data } = await apiAxios(`movie/${id}/similar`)
+    const { data } = await apiAxios(`movie/${id}/similar`, {
+        params: {
+            page,
+        }
+    })
     console.log(data)
+    maxPage = data.total_pages
 
     const relatedMovies = data.results
+
     movieDetailSimilarList.innerHTML = ""
+
     createMovies(relatedMovies, movieDetailSimilarList, true)
     movieDetailSimilarList.scrollTo(0,0)
-
-
+}
+function getPaginatedSimilarMovies(id){
+    return async function(){
+        
+        const scrollWidthScreen = document.documentElement.scrollWidth
+        
+        const { scrollLeft, scrollWidth} = movieDetailSimilarList
+        const scrollIsRight = (scrollWidth + scrollLeft) >= (scrollWidthScreen - 10)
+    
+        const pageIsNotMax = page < maxPage
+    
+        if(scrollIsRight && pageIsNotMax){
+            movieDetailSimilarList.addEventListener("scroll", infiniteScroll, false);
+            page++
+            const { data } = await apiAxios(`movie/${id}/similar`, {
+                params: {
+                    page,
+                }
+            })
+            const relatedMovies = data.results
+            createMovies(relatedMovies, movieDetailSimilarList, true)
+        }
+    }
 }

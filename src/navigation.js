@@ -40,8 +40,9 @@ function navigator(){
     window.scrollTo(0,0);
 
     if(infiniteScroll){
-        window.addEventListener("scroll", infiniteScroll, false)
+        window.addEventListener("scroll", infiniteScroll, {passive: false})
     }
+    page = 1
 }
 
 function homePage(){
@@ -110,6 +111,7 @@ function categoriesPage(){
     const finalId = initialId[1].split("-")
 
     getMoviesByCategory(finalId[0], finalId[1].replace("%20", " "))
+    infiniteScroll = getPaginatedMoviesByCategory(finalId[0], finalId[1].replace("%20", " "))
 }
 function movieDetailsPage(){
     console.log("Movie")
@@ -139,6 +141,7 @@ function movieDetailsPage(){
     const [_, movieId] = location.hash.split("=")
     console.log(movieId)
     getMovieById(movieId)
+    infiniteScroll = getPaginatedSimilarMovies(movieId)
 }
 function searchPage(){
     console.log("Search")
@@ -171,6 +174,8 @@ function searchPage(){
 
     const query = location.hash.split("=")
     getMoviesBySearch(query[1].replaceAll("%20", " "))
+
+    infiniteScroll = getPaginatedMoviesBySearch(query[1].replaceAll("%20", " "))
 }
 function trendsPage(){
     console.log("Trends")
