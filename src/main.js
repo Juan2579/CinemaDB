@@ -348,7 +348,7 @@ async function getRelatedMovieById(id){
     createMovies(relatedMovies, movieDetailSimilarList, true)
     movieDetailSimilarList.scrollTo(0,0)
 }
-function getPaginatedSimilarMovies(id){
+function getPaginatedSimilarMovies(id, page = 1){
     return async function(){
         
         const scrollWidthScreen = document.documentElement.scrollWidth
