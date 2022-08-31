@@ -27,6 +27,7 @@ function navigator(){
 
     if(location.hash.startsWith("#trends")){
         trendsPage()
+        titleSearch.innerText = "Trends"
     }else if(location.hash.startsWith("#search=")){
         searchPage()
     }else if(location.hash.startsWith("#movie=")){
@@ -74,8 +75,12 @@ function homePage(){
     //genericMoviesSection
     genericMoviesContainer.classList.add("inactive")
 
+    //favoriteMoviesSection
+    likedMoviesContainer.classList.remove("inactive")
+
     getTrendingMoviesPreview()
     getCategoriesList() 
+    getLikedMovies()
 }
 function categoriesPage(){
     console.log("Categories")
@@ -103,6 +108,9 @@ function categoriesPage(){
 
     //genericMoviesSection
     genericMoviesContainer.classList.add("inactive")
+
+     //favoriteMoviesSection
+     likedMoviesContainer.classList.add("inactive")
 
     //search Page
     mainSearchContainerFull.classList.add("inactive")
@@ -138,6 +146,9 @@ function movieDetailsPage(){
     //genericMoviesSection
     genericMoviesContainer.classList.add("inactive")
 
+    //favoriteMoviesSection
+    likedMoviesContainer.classList.add("inactive")
+
     const [_, movieId] = location.hash.split("=")
     console.log(movieId)
     getMovieById(movieId)
@@ -171,6 +182,8 @@ function searchPage(){
     //genericMoviesSection
      genericMoviesContainer.classList.remove("inactive")
 
+    //favoriteMoviesSection
+    likedMoviesContainer.classList.add("inactive")
 
     const query = location.hash.split("=")
     getMoviesBySearch(query[1].replaceAll("%20", " "))
@@ -200,12 +213,17 @@ function trendsPage(){
     movieDetailBackground.classList.add("inactive")
 
     //searchPage
+    mainSearchContainerFull.classList.remove("inactive")
     mainSearchContainer.classList.add("inactive");
     titleSearch.classList.remove("inactive");
     //genericMoviesSection
     genericMoviesContainer.classList.remove("inactive")
 
+    //favoriteMoviesSection
+    likedMoviesContainer.classList.add("inactive")
+
     getTrendingMovies()
+    titleSearch.innerText = "Trends"
     page = 1
     infiniteScroll = getPaginatedTrendingMovies
 }

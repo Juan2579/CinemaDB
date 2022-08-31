@@ -10,6 +10,37 @@ const apiAxios = axios.create({
     }
 })
 
+const likedMoviesList = () => {
+
+    const item = JSON.parse(localStorage.getItem("liked_movies"))
+    let movies;
+
+    if (item) {
+        movies = item
+    }else{
+        movies = {}
+    }
+
+    return movies
+}
+
+
+const likeMovie = (movie) => {
+    const likedMovies = likedMoviesList()
+    console.log(likedMovies)
+    if (likedMovies[movie.id]) {
+        likedMovies[movie.id] = undefined
+        console.log("La pelicula ya estaba en ls, la vamos a borrar")
+    }else{
+        console.log("La pelicula no estaba en ls, la vamos a agregar")
+        likedMovies[movie.id] = movie
+    }
+
+    localStorage.setItem("liked_movies", JSON.stringify(likedMovies))
+}
+
+//Helper functions
+
 const lazyLoading = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting == true){
@@ -27,7 +58,6 @@ const lazyLoading = new IntersectionObserver((entries) => {
 })
 
 
-//Helper functions
 const createMovies = (movies, container, lazyLoad = false) => {
     movies.forEach(movie => {
         
@@ -48,17 +78,47 @@ const createMovies = (movies, container, lazyLoad = false) => {
         const movieName = document.createElement("p")
         const movieNameTitle = document.createTextNode(movie.title);
         movieName.appendChild(movieNameTitle);
+        
+        const movieLikedButton = document.createElement("button")
+        movieLikedButton.classList.add("movie_likedButton")
+        const movieLikedButtonImage = document.createElement("img")
+        movieLikedButtonImage.classList.add("likedButton_image")
+        movieLikedButton.appendChild(movieLikedButtonImage)
+        movieLikedButtonImage.setAttribute("src", "../assets/icons/heart.svg")
+        if (likedMoviesList()[movie.id]) {
+            movieLikedButton.classList.toggle("movie_likedButton--active")
+            movieLikedButtonImage.setAttribute("src", "../assets/icons/heartActive.svg")
+        } else {
+            movieLikedButtonImage.setAttribute("src", "../assets/icons/heart.svg")
+        }
+        movieLikedButton.addEventListener("click", (e) => {
+            movieLikedButton.classList.toggle("movie_likedButton--active")
+            console.log(movieLikedButton.classList[1])
+            if(movieLikedButton.classList[1] == "movie_likedButton--active"){
+                movieLikedButtonImage.setAttribute("src", "../assets/icons/heartActive.svg")
+            }else if(movieLikedButton.classList[1] == undefined){
+                movieLikedButtonImage.setAttribute("src", "../assets/icons/heart.svg")
+            }
+            likeMovie(movie)
+            e.stopPropagation()
 
+        })
         if(lazyLoad){
             lazyLoading.observe(movieImg)
         }
 
         movieContainer.appendChild(movieImg);
+        movieContainer.appendChild(movieLikedButton)
         movieContainer.appendChild(movieName);
         container.appendChild(movieContainer);
+        // if(localStorage.getItem("liked_movies", JSON.stringify(movie) )){
+        //     console.log("hola")
+        //     movieLikedButtonImage.setAttribute("src", "../assets/icons/heartActive.svg")
+        // }else if(!localStorage.getItem("liked_movies", JSON.stringify(movie))){
+        //     movieLikedButtonImage.setAttribute("src", "../assets/icons/heart.svg")
+        // }
     });
 }
-
 const createCategories = (categories, container) => {
 
     container.innerHTML = ""
@@ -190,7 +250,6 @@ function getPaginatedMoviesBySearch(query){
         })
         const movies = data.results
         createMovies(movies, genericMoviesList, true)
-        titleSearch.innerText = "Trends"
     }
    }
 }
@@ -207,6 +266,7 @@ async function getTrendingMovies(page = 1){
     const movies = data.results
     if(page == 1){
         genericMoviesList.innerHTML = ""
+        titleSearch.innerText = "Trends"
     }
     maxPage = data.total_pages
     titleSearch.innerText = "Trends"
@@ -234,7 +294,7 @@ async function getPaginatedTrendingMovies(){
 
     const pageIsNotMax = page < maxPage
 
-    if(scrollIsBottom){
+    if(scrollIsBottom && pageIsNotMax){
         page++
         const { data } = await apiAxios(`trending/movie/day`, {
             params: {
@@ -245,6 +305,7 @@ async function getPaginatedTrendingMovies(){
         createMovies(movies, genericMoviesList, true)
         titleSearch.innerText = "Trends"
     }
+    titleSearch.innerText = "Trends"
 }
 
 
@@ -274,7 +335,6 @@ async function getRelatedMovieById(id){
             page,
         }
     })
-    console.log(data)
     maxPage = data.total_pages
 
     const relatedMovies = data.results
@@ -306,4 +366,13 @@ function getPaginatedSimilarMovies(id){
             createMovies(relatedMovies, movieDetailSimilarList, true)
         }
     }
+}
+
+function getLikedMovies(){
+    const likedMovies = likedMoviesList();
+    const moviesArray = Object.values(likedMovies)
+
+    likedMoviesListContainer.innerHTML = ""
+    createMovies(moviesArray, likedMoviesListContainer, false)
+    console.log(likedMovies)
 }

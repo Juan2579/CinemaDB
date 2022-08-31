@@ -32,6 +32,10 @@ const movieDetailSimilarList = document.querySelector(".movie-info_container .mo
 const genericMoviesContainer = document.querySelector(".main-generic_container")
 const genericMoviesList = document.querySelector(".main_generic-list")
 
+//sections favoriteMovies
+const likedMoviesContainer = document.querySelector(".main-liked_container")
+const likedMoviesListContainer = document.querySelector(".liked_movieList")
+
 
 //elements
 const backButton = document.querySelector(".main_back-button")
