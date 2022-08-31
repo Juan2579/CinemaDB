@@ -84,24 +84,26 @@ const createMovies = (movies, container, lazyLoad = false) => {
         const movieLikedButtonImage = document.createElement("img")
         movieLikedButtonImage.classList.add("likedButton_image")
         movieLikedButton.appendChild(movieLikedButtonImage)
-        movieLikedButtonImage.setAttribute("src", "../assets/icons/heart.svg")
+        movieLikedButtonImage.setAttribute("src", "./assets/icons/heart.svg")
         if (likedMoviesList()[movie.id]) {
             movieLikedButton.classList.toggle("movie_likedButton--active")
-            movieLikedButtonImage.setAttribute("src", "../assets/icons/heartActive.svg")
+            movieLikedButtonImage.setAttribute("src", "./assets/icons/heartActive.svg")
         } else {
-            movieLikedButtonImage.setAttribute("src", "../assets/icons/heart.svg")
+            movieLikedButtonImage.setAttribute("src", "./assets/icons/heart.svg")
         }
         movieLikedButton.addEventListener("click", (e) => {
             movieLikedButton.classList.toggle("movie_likedButton--active")
             console.log(movieLikedButton.classList[1])
             if(movieLikedButton.classList[1] == "movie_likedButton--active"){
-                movieLikedButtonImage.setAttribute("src", "../assets/icons/heartActive.svg")
+                movieLikedButtonImage.setAttribute("src", "./assets/icons/heartActive.svg")
             }else if(movieLikedButton.classList[1] == undefined){
-                movieLikedButtonImage.setAttribute("src", "../assets/icons/heart.svg")
+                movieLikedButtonImage.setAttribute("src", "./assets/icons/heart.svg")
             }
             likeMovie(movie)
             e.stopPropagation()
-
+            if (location.hash.startsWith("")) {
+                homePage()
+            }
         })
         if(lazyLoad){
             lazyLoading.observe(movieImg)
@@ -117,6 +119,8 @@ const createMovies = (movies, container, lazyLoad = false) => {
         // }else if(!localStorage.getItem("liked_movies", JSON.stringify(movie))){
         //     movieLikedButtonImage.setAttribute("src", "../assets/icons/heart.svg")
         // }
+
+        
     });
 }
 const createCategories = (categories, container) => {
@@ -372,7 +376,13 @@ function getLikedMovies(){
     const likedMovies = likedMoviesList();
     const moviesArray = Object.values(likedMovies)
 
+    if(moviesArray.length == 0){
+        likedMoviesContainer.style.display = "none"
+    }else{
+        likedMoviesContainer.style.display = ""
+    }
     likedMoviesListContainer.innerHTML = ""
     createMovies(moviesArray, likedMoviesListContainer, false)
+    
     console.log(likedMovies)
 }
