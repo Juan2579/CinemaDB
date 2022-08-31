@@ -47,7 +47,7 @@ const lazyLoading = new IntersectionObserver((entries) => {
             const url = entry.target.getAttribute("data-img")
 
             if (url == "https://image.tmdb.org/t/p/w500null") {
-                entry.target.setAttribute("src", "../assets/images/imageError.jpg")
+                entry.target.setAttribute("src", "./assets/images/imageError.jpg")
             } else {
                 entry.target.setAttribute("src", url)
             }
