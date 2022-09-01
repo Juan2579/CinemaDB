@@ -2,7 +2,11 @@ let page = 1
 let maxPage;
 let infiniteScroll;
 buttonSearch.addEventListener("click", () => {
-    location.hash = `#search=${inputSearch.value.trim()}`
+    if(inputSearch.value.trim() == ""){
+        console.log("error pon un nombre")
+    }else{
+        location.hash = `#search=${inputSearch.value.trim()}`
+    }
 })
 buttonTrends.addEventListener("click", () => {
     location.hash = "#trends"
@@ -186,9 +190,14 @@ function searchPage(){
     likedMoviesContainer.classList.add("inactive")
 
     const query = location.hash.split("=")
-    getMoviesBySearch(query[1].replaceAll("%20", " "))
+    if(query[1].replaceAll("%20", " ") == ""){
+        console.log("error")
+        titleSearch.innerText = "Make a Search"
+    }else{
+        getMoviesBySearch(query[1].replaceAll("%20", " "))
+        infiniteScroll = getPaginatedMoviesBySearch(query[1].replaceAll("%20", " "))
+    }
 
-    infiniteScroll = getPaginatedMoviesBySearch(query[1].replaceAll("%20", " "))
 }
 function trendsPage(){
     console.log("Trends")
