@@ -101,7 +101,7 @@ const createMovies = (movies, container, lazyLoad = false) => {
             }
             likeMovie(movie)
             e.stopPropagation()
-            if (location.hash == "") {
+            if (location.hash == "" || location.hash == "#scroll") {
                 homePage()
             }
         })
